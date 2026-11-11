@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОРДА: Земли Раздора — Стратегический План (Сезон 1)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f0d0c;
+            --bg-card: #1a1614;
+            --bg-card-hover: #241e1b;
+            --border-gold: #4a3b2c;
+            --accent-gold: #e5b869;
+            --accent-red: #b92b27;
+            --accent-green: #388e3c;
+            --accent-blue: #2980b9;
+            --text-main: #e8e2d9;
+            --text-muted: #9e9384;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 0%, #2c1614 0%, #0f0d0c 60%);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, rgba(185,43,39,0.2) 0%, rgba(26,22,20,0.9) 100%);
+            border: 2px solid var(--border-gold);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), var(--accent-red), var(--accent-gold), transparent);
+        }
+
+        .hero h1 {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2.8rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.9);
+            margin-bottom: 8px;
+        }
+
+        .hero .subtitle {
+            display: inline-block;
+            background: var(--accent-red);
+            color: #fff;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-box {
+            background: rgba(15, 13, 12, 0.7);
+            border: 1px solid var(--border-gold);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stat-box .num {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+        }
+
+        .stat-box .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SECTION HEADERS */
+        .section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title span.step {
+            background: var(--accent-red);
+            color: #fff;
+            font-size: 1rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        /* GRIDS & CARDS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 10px;
+            padding: 22px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .card h3 {
+            font-family: 'Russo One', sans-serif;
+            color: #fff;
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-red { background: rgba(185, 43, 39, 0.25); color: #ff6b6b; border: 1px solid #b92b27; }
+        .badge-gold { background: rgba(229, 184, 105, 0.15); color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+        .badge-green { background: rgba(56, 142, 60, 0.25); color: #81c784; border: 1px solid #388e3c; }
+
+        /* ORC TABLE */
+        .orc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .orc-item {
+            background: rgba(0,0,0,0.3);
+            border-left: 4px solid var(--accent-gold);
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .orc-item.priority-max { border-left-color: #ff4757; }
+        .orc-item.priority-high { border-left-color: #2ed573; }
+        .orc-item.priority-mid { border-left-color: #eccc68; }
+
+        .orc-name { font-weight: 700; color: #fff; font-size: 0.95rem; }
+        .orc-desc { font-size: 0.8rem; color: var(--text-muted); }
+        .orc-stats { text-align: right; font-size: 0.8rem; font-weight: 600; min-width: 110px; }
+
+        /* CHECKLIST */
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: rgba(0,0,0,0.25);
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid transparent;
+        }
+
+        .checklist li:hover {
+            border-color: var(--border-gold);
+        }
+
+        .checklist input[type="checkbox"] {
+            accent-color: var(--accent-gold);
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 3px solid var(--border-gold);
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .timeline-item {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -40px;
+            top: 22px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: 3px solid var(--bg-dark);
+            box-shadow: 0 0 0 2px var(--accent-gold);
+        }
+
+        .timeline-item.critical::before {
+            background: var(--accent-red);
+            box-shadow: 0 0 0 2px var(--accent-red);
+        }
+
+        /* PHASE CLOCK BAR */
+        .phase-bar-wrapper {
+            margin: 15px 0;
+        }
+
+        .phase-bar {
+            display: flex;
+            height: 44px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .phase-seg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .seg-orders { width: 70%; background: rgba(56, 142, 60, 0.3); color: #a5d6a7; }
+        .seg-boost { width: 15%; background: rgba(229, 184, 105, 0.3); color: var(--accent-gold); border-left: 2px dashed var(--accent-gold); }
+        .seg-lock { width: 15%; background: rgba(185, 43, 39, 0.4); color: #ffcdd2; border-left: 2px solid var(--accent-red); }
+
+        /* CALLOUTS & LISTS */
+        .callout {
+            background: rgba(229, 184, 105, 0.08);
+            border-left: 4px solid var(--accent-gold);
+            padding: 12px 15px;
+            margin-top: 15px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9rem;
+        }
+
+        .callout.danger {
+            background: rgba(185, 43, 39, 0.12);
+            border-left-color: var(--accent-red);
+        }
+
+        ul.styled-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        ul.styled-list li {
+            position: relative;
+            padding-left: 18px;
+            font-size: 0.92rem;
+            color: #d6cfc5;
+        }
+
+        ul.styled-list li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+        }
+
+        strong { color: var(--accent-gold); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .phase-bar { flex-direction: column; height: auto; }
+            .phase-seg { width: 100% !important; padding: 10px; border-left: none !important; border-bottom: 1px solid var(--border-gold); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HERO HEADER -->
+    <header class="hero">
+        <div class="subtitle">Тактический гайд и мета-стратегия • Сезон 1</div>
+        <h1>ОРДА: Земли Раздора</h1>
+        <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 25px; font-size: 0.95rem;">
+            Пошаговый алгоритм максимизации добычи клана: от правильной сборки сетов до перехвата шахт и контроля таймингов.
+        </p>
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="num">10 дней</div>
+                <div class="label">50 боевых фаз (ПН–ПТ)</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">3 хода</div>
+                <div class="label">На отряд в день</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">Max 5</div>
+                <div class="label">Отрядов клана на клетке</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">15 шахт</div>
+                <div class="label">6 долей добычи в день</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">20 игроков</div>
+                <div class="label">До 3 команд у каждого</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ЭТАП 1: ПОДГОТОВКА -->
+    <div class="section-title">
+        <span class="step">ЭТАП 1</span> Подготовка к старту (Сборка и Клан)
+    </div>
+
+    <div class="grid-2">
+        <!-- Карточка сборки орков -->
+        <div class="card">
+            <h3>1. Приоритет Силы (Power) по эмоциям <span class="badge badge-gold">7 орков • 1 тон</span></h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                Цвет кожи (Skin Tone) должен быть одинаковым у всех 7 орков, но статов он не дает. Распределяйте NFT с самым высоким <strong>Power</strong> строго по этим ролям:
+            </p>
+            <div class="orc-list">
+                <div class="orc-item priority-max">
+                    <div>
+                        <div class="orc-name">🔥 To The Moon (Главный ДД)</div>
+                        <div class="orc-desc">15% шанс: игнорирует 46,7% защиты цели</div>
+                    </div>
+                    <div class="orc-stats" style="color:#ff6b6b;">53% АТК / 27% HP<br><small>Макс. Power #1</small></div>
+                </div>
+                <div class="orc-item priority-max">
+                    <div>
+                        <div class="orc-name">⚡ Shoked (Анти-саппорт ДД)</div>
+                        <div class="orc-desc">Режет хил (In Love) и бафф (When TGE) на 60%</div>
+                    </div>
+                    <div class="orc-stats" style="color:#ff6b6b;">43% АТК / 32% HP<br><small>Макс. Power #2</small></div>
+                </div>
+                <div class="orc-item priority-high">
+                    <div>
+                        <div class="orc-name">🛡️ Greeting (Щитовик)</div>
+                        <div class="orc-desc">Щит раненому = 21% от СВОЕГО max HP</div>
+                    </div>
+                    <div class="orc-stats" style="color:#81c784;">46% HP / 30% ЗАЩ<br><small>Макс. Power #3</small></div>
+                </div>
+                <div class="orc-item priority-high">
+                    <div>
+                        <div class="orc-name">💚 In Love (Целитель)</div>
+                        <div class="orc-desc">Лечит раненого = 16% от СВОЕГО max HP</div>
+                    </div>
+                    <div class="orc-stats" style="color:#81c784;">42% HP / 32% ЗАЩ<br><small>Макс. Power #4</small></div>
+                </div>
+                <div class="orc-item priority-mid">
+                    <div>
+                        <div class="orc-name">⚔️ Do Something / Capped / When TGE</div>
+                        <div class="orc-desc">Ярость (×1.63 удар) / Прикрытие от смерти / +14% атаки пачке</div>
+                    </div>
+                    <div class="orc-stats" style="color:var(--accent-gold);">Остальные слоты<br><small>Под закрытие сета</small></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Карточка сетов и чек-листа -->
+        <div class="card">
+            <h3>2. Абуз Сетов и Чек-лист готовности <span class="badge badge-red">Критично</span></h3>
+            <div class="callout" style="margin-top: 0; margin-bottom: 15px;">
+                <strong>Секрет экипировки (+2400 силы):</strong> Шмотки работают ТОЛЬКО через сеты: Logo (до +1000) + Earring (до +1000) + Bracelet (+400 за 4 шт).<br>
+                💡 <em>Лайфхак:</em> Орк с 2 логотипами одного семейства (например, TON + Professor TON) дает <strong>2 очка в сет</strong>! Это спасет бонус сета (+1000 за 7 ед.), даже если 1–2 орка погибнут в первой волне.
+            </div>
+
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Нажимайте на пункты, чтобы отметить выполнение до старта:</p>
+            <ul class="checklist">
+                <li>
+                    <input type="checkbox">
+                    <span><strong>Делегирование 100%:</strong> Все 20 игроков выдали Лидеру и Офицерам право управлять отрядом и применять усилители.</span>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span><strong>Собраны все 3 слота (21 NFT):</strong> Основная команда с полным сетом + 2 резервные на базе для мгновенной ротации.</span>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span><strong>Казна пополнена заранее:</strong> Переведены Золото, Алмазы, Камень и Магич. пыль из ZarGates в ZarNova.</span>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <span><strong>Дежурные по таймингам:</strong> Назначены офицеры на закрытие всех 5 фаз (особенно на 11:35–11:45 и 19:35–19:45 UTC).</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЭТАП 2: ЭКОНОМИКА И ПРОКАЧКА БАЗЫ -->
+    <div class="section-title">
+        <span class="step">ЭТАП 2</span> Билд прокачки способностей клана
+    </div>
+    <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">
+        Правило игры: клан может открыть <strong>не более 2 новых способностей (с 0 на I ур.) в сутки UTC</strong>. Повышать уровни (I → IV) уже открытых можно без лимита!
+    </p>
+
+    <div class="grid-3">
+        <div class="card">
+            <h3>День 1 (Понедельник) <span class="badge badge-red">Старт в 10:00 UTC</span></h3>
+            <ul class="styled-list">
+                <li><strong>1. Доп. приказы (сразу до Ур. II–III):</strong> Дает общий пул +3/+4 хода. До ближайшей шахты 4–5 клеток, а у отряда всего 3 хода. Без этого вы НЕ займете шахту в 1-й фазе!</li>
+                <li><strong>2. Телепорт (Ур. I–II):</strong> Прыжок на 3–4 клетки на свою территорию. Позволит со 2-й фазы перебрасывать отряды с базы прямо на захваченные шахты за 1 ход!</li>
+            </ul>
+            <div class="callout">
+                💰 <strong>Бюджет Дня 1:</strong> ~275M Золота, 1800 Алмазов, 100 Магич. пыли.
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>День 2 (Вторник) <span class="badge badge-gold">Оборона и Инфо</span></h3>
+            <ul class="styled-list">
+                <li><strong>3. Укрепление (Ур. I–II):</strong> Стоит копейки (Золото + Камень). Срезает урон по защитникам вашей шахты на <strong>20% (×0.8)</strong> в первом бою.</li>
+                <li><strong>4. Разведка (Ур. II–III):</strong> Вскрывает клетку до блокировки фазы. Показывает чужие приказы И <strong>остаток ходов (0/3)</strong> у вражеских отрядов!</li>
+            </ul>
+            <div class="callout">
+                💰 <strong>Бюджет Дня 2:</strong> ~225M Золота, 2000 Алмазов, 6700 Камня.
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>День 3 (Среда) <span class="badge badge-green">Буст экономики</span></h3>
+            <ul class="styled-list">
+                <li><strong>5. Ускорение добычи (Ур. I–II):</strong> Дает ×1.25 к следующей доле шахты. <em>Почему в День 3?</em> Бонус берется из общего фонда невыфармленных шахт, который в 1-й день еще пуст!</li>
+                <li><strong>6. Лекарь (Ур. I–II):</strong> +15% HP живым оркам в поле (потолок 85%). Позволяет подлечить топ-стак на шахте без отхода на базу.</li>
+            </ul>
+            <div class="callout">
+                💰 <strong>Бюджет Дня 3:</strong> ~315M Золота, 260 000 Изумрудов.
+            </div>
+        </div>
+    </div>
+
+    <!-- ЭТАП 3: БОЕВАЯ МЕХАНИКА И ХИТРОСТИ -->
+    <div class="section-title">
+        <span class="step">ЭТАП 3</span> Ключевые механики и тактические эксплойты
+    </div>
+
+    <div class="card" style="margin-bottom: 20px;">
+        <h3>⏱️ Идеальный тайминг каждых 2 часов (Окно Фазы = 120 минут)</h3>
+        <div class="phase-bar-wrapper">
+            <div class="phase-bar">
+                <div class="phase-seg seg-orders">00:00 – 01:35 (95 мин)<br>Изучение итогов, ротация на базе, черновые приказы</div>
+                <div class="phase-seg seg-boost">01:35 – 01:40 (100-я мин)<br>🔥 ДЕДЛАЙН ПОКУПКИ УСИЛИТЕЛЕЙ + РАЗВЕДКА</div>
+                <div class="phase-seg seg-lock">01:40 – 01:45 (105-я мин)<br>⚔️ СНАЙПИНГ ПРИКАЗОВ И БЛОКИРОВКА</div>
+            </div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+            <strong>Важно:</strong> Платные усилители (Экстренное лечение / Сокращение восстановления) можно <strong>купить только до 100-й минуты</strong> (11:40, 13:40, 15:40, 17:40, 19:40 UTC), а применить — до 105-й минуты!
+        </p>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <h3>🎯 1. Абуз «Фазы 5» (Двойная доля)</h3>
+            <ul class="styled-list">
+                <li><strong>Фазы 1–5:</strong> Долю получает тот, кто владел шахтой <strong>ДО начала расчёта</strong> (даже если в этой фазе её отбили).</li>
+                <li><strong>Ночная доля (20:00 UTC):</strong> Получает тот, кто владеет шахтой <strong>ПОСЛЕ расчёта Фазы 5</strong>.</li>
+                <li><strong>Тактика:</strong> Захват вражеской шахты в Фазе 5 приносит вам сразу <strong>Ночную долю + гарантированную долю Фазы 1 следующего утра</strong> (так как на начало Фазы 1 шахта уже ваша!). Это 2 доли за 1 бой.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🛡️ 2. Стек из 5 отрядов и Очередность</h3>
+            <ul class="styled-list">
+                <li>В бою «никто не ждёт»: если у вас на шахте 2 отряда, а враг привел 1 — ваши бьют его <strong>вдвоём одновременно (2 на 1)</strong> в первой же волне!</li>
+                <li><strong>Работа Офицера:</strong> В окне клетки меняйте очередность своих отрядов. Ставьте на <strong>1-е место самый целый отряд с полным сетом</strong>, а раненых — ниже (они пойдут подкреплением).</li>
+                <li>Не редактируйте приказ в последние секунды без нужды — время приказа обновится, и отряд упадет в конец очереди!</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🔄 3. Карусель: База + Резерв + Телепорт</h3>
+            <ul class="styled-list">
+                <li>Пешком с шахты на базу возвращаться дорого (тратятся ходы дня).</li>
+                <li><strong>Схема ротации:</strong> Раненый отряд прыгает с шахты на Базу <strong>Телепортом</strong> (1 ход). На базе в следующую фазу вы меняете его на свежую <strong>Команду №2 из Резерва</strong>, которая Телепортом прыгает обратно на шахту!</li>
+                <li>Чтобы получить бесплатные <strong>+25% HP на базе</strong>, команда должна простоять там ВСЮ фазу (без выходов и телепортов).</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>⚠️ 4. Ловушка «Встречного хода» и Сеты</h3>
+            <ul class="styled-list">
+                <li><strong>Встречный ход:</strong> Если ваш отряд идет с клетки А на Б, а враг в ту же фазу идет с Б на А — <strong>вы разминетесь без боя!</strong> Никогда не уходите с шахты всеми отрядами навстречу врагу.</li>
+                <li><strong>Потеря 1 орка:</strong> Если в отряде погиб 1 орк (осталось 6/7), отряд остается на карте, но его сет экипировки может упасть с +1000 до +700. Верните отряд на базу, чтобы забрать воскресшего орка!</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЭТАП 4: ДОРОЖНАЯ КАРТА СЕЗОНА -->
+    <div class="section-title">
+        <span class="step">ЭТАП 4</span> Дорожная карта сезона (Оптимальный путь)
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item critical">
+            <h3>День 1, Фаза 1 (Понедельник, 10:00 – 11:45 UTC) — «Блицкриг» <span class="badge badge-red">Старт сезона</span></h3>
+            <ul class="styled-list">
+                <li>В 10:01 Лидер покупает <strong>Доп. приказы (Ур. II)</strong> и <strong>Телепорт (Ур. I)</strong>.</li>
+                <li>Выбираются 2–3 топ-отряда клана. Они тратят свои 3 хода + 1–2 хода из пула Доп. приказов (цепочкой из 4–5 шагов) и <strong>садятся на ближайшие Богатые/Средние шахты уже в Фазе 1</strong>!</li>
+                <li>Остальные 17 отрядов тратят по 2 хода, выстраивая «дорожку» из своих клеток к шахтам.</li>
+                <li>В <strong>Фазе 2 (12:00 UTC)</strong> свежие отряды прыгают Телепортом сразу на захваченные в Фазе 1 шахты, доводя защиту до 5 отрядов и экономя по 2 хода!</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Дни 2–4 (Вторник — Четверг) — «Накачка и Охота за 150% пулами» <span class="badge badge-gold">Основной цикл</span></h3>
+            <ul class="styled-list">
+                <li>Удерживайте свои Богатые шахты стеками по 5 отрядов под <strong>Укреплением (-20% урона)</strong>.</li>
+                <li>Применяйте <strong>Ускорение добычи (×1.25)</strong> на надежно защищенные Богатые шахты (особенно в Фазе 5 под ночную долю).</li>
+                <li>Ищите на карте спорные шахты, которые вчера стояли ничьими: из-за переноса 50% невыфармленных долей их суточный пул вырастает до <strong>150% от базового</strong>!</li>
+            </ul>
+        </div>
+
+        <div class="timeline-item critical">
+            <h3>День 5, Фаза 5 (Пятница, 18:00 – 19:45 UTC) — «Подготовка к Переезду Шахт» <span class="badge badge-red">Мета-мув недели</span></h3>
+            <ul class="styled-list">
+                <li>В выходные боев и лечения на базе НЕТ. Но в <strong>понедельник 2-й недели в 10:00 UTC все 15 шахт переедут на новые клетки</strong>, а отряды останутся стоять на местах!</li>
+                <li>Мы знаем алгоритм генерации (стр. 26): новые шахты появятся в <strong>4–5 шагах от баз</strong>, НЕ на старых шахтах и НЕ вплотную друг к другу.</li>
+                <li><strong>Что сделать в Фазе 5 пятницы:</strong> Оставьте на текущих шахтах ровно столько сил, чтобы забрать ночную долю пятницы. Все остальные свободные отряды <strong>рассредоточьте по 1 штуке на пустых клетках в радиусе 4–5 шагов от базы</strong>!</li>
+                <li>Все раненые резервные отряды обязательно заведите на Базу до 19:45 пятницы, чтобы
