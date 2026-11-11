@@ -96,6 +96,44 @@
             text-transform: uppercase;
         }
 
+        /* RESOURCE CHIPS WITH SVG ICONS */
+        .res-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(229, 184, 105, 0.28);
+            padding: 2px 8px 2px 6px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: #fff;
+            margin: 2px 3px 2px 0;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        .res-chip svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.8));
+        }
+
+        .res-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid var(--border-gold);
+            padding: 8px 14px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
         /* SECTION HEADERS */
         .section-title {
             font-family: 'Russo One', sans-serif;
@@ -184,7 +222,7 @@
         .data-table td {
             padding: 8px 10px;
             border-bottom: 1px solid rgba(74, 59, 44, 0.4);
-            vertical-align: top;
+            vertical-align: middle;
         }
 
         .data-table tr.priority-row td {
@@ -192,7 +230,7 @@
         }
 
         .data-table tr.skip-row td {
-            opacity: 0.65;
+            opacity: 0.7;
             background: rgba(185, 43, 39, 0.06);
         }
 
@@ -296,6 +334,48 @@
     </style>
 </head>
 <body>
+
+<!-- СПРАЙТ ВСТРОЕННЫХ SVG-ИКОНОК РЕСУРСОВ -->
+<svg style="display:none;" xmlns="http://www.w3.org/2000/svg">
+    <!-- Золото -->
+    <symbol id="ico-gold" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="#f59e0b" stroke="#fde68a" stroke-width="2"/>
+        <circle cx="12" cy="12" r="6" fill="#fbbf24"/>
+        <path d="M12 8v8M9 11h6" stroke="#78350f" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <!-- Алмазы -->
+    <symbol id="ico-diamond" viewBox="0 0 24 24">
+        <polygon points="6,3 18,3 22,9 12,21 2,9" fill="#38bdf8" stroke="#bae6fd" stroke-width="1.5"/>
+        <polyline points="2,9 22,9" stroke="#bae6fd" stroke-width="1.2"/>
+        <polyline points="6,3 12,9 18,3" fill="none" stroke="#e0f2fe" stroke-width="1.2"/>
+    </symbol>
+    <!-- Изумруды -->
+    <symbol id="ico-emerald" viewBox="0 0 24 24">
+        <polygon points="8,2 16,2 21,7 21,17 16,22 8,22 3,17 3,7" fill="#10b981" stroke="#a7f3d0" stroke-width="1.5"/>
+        <rect x="8" y="7" width="8" height="10" fill="#34d399" opacity="0.6"/>
+    </symbol>
+    <!-- Камень -->
+    <symbol id="ico-stone" viewBox="0 0 24 24">
+        <polygon points="4,18 2,10 8,4 17,5 22,12 19,20 9,21" fill="#9ca3af" stroke="#e5e7eb" stroke-width="1.5"/>
+        <polyline points="8,4 12,12 19,20" fill="none" stroke="#4b5563" stroke-width="1.5"/>
+    </symbol>
+    <!-- Магическая пыль -->
+    <symbol id="ico-dust" viewBox="0 0 24 24">
+        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#c084fc" stroke="#f3e8ff" stroke-width="1.5"/>
+        <circle cx="5" cy="5" r="2" fill="#e879f9"/>
+        <circle cx="19" cy="19" r="1.8" fill="#e879f9"/>
+    </symbol>
+    <!-- ZAR -->
+    <symbol id="ico-zar" viewBox="0 0 24 24">
+        <polygon points="12,1 22,6.5 22,17.5 12,23 2,17.5 2,6.5" fill="#d97706" stroke="#fef08a" stroke-width="1.8"/>
+        <text x="12" y="15.5" font-family="Arial, sans-serif" font-weight="900" font-size="10" fill="#fff" text-anchor="middle">Z</text>
+    </symbol>
+    <!-- GRAM -->
+    <symbol id="ico-gram" viewBox="0 0 24 24">
+        <polygon points="12,2 22,8 12,22 2,8" fill="#2563eb" stroke="#93c5fd" stroke-width="1.5"/>
+        <line x1="12" y1="2" x2="12" y2="22" stroke="#93c5fd" stroke-width="1.5"/>
+    </symbol>
+</svg>
 
 <div class="container">
 
@@ -430,9 +510,21 @@
         </div>
     </div>
 
-    <!-- РАЗДЕЛ 2: УМНАЯ ЭКОНОМИКА (ЧТО КАЧАТЬ, А ЧТО ПРОПУСТИТЬ) -->
+    <!-- РАЗДЕЛ 2: УМНАЯ ЭКОНОМИКА С ИКОНКАМИ РЕСУРСОВ -->
     <div class="section-title">
         <span class="step">2</span> Экономика и ROI: Что качать, а на чем НЕ сливать Казну
+    </div>
+
+    <!-- Легенда иконок -->
+    <div class="res-legend">
+        <span><strong>Обозначения ресурсов:</strong></span>
+        <span class="res-chip"><svg><use href="#ico-gold"/></svg> Золото</span>
+        <span class="res-chip"><svg><use href="#ico-diamond"/></svg> Алмазы</span>
+        <span class="res-chip"><svg><use href="#ico-emerald"/></svg> Изумруды</span>
+        <span class="res-chip"><svg><use href="#ico-stone"/></svg> Камень</span>
+        <span class="res-chip"><svg><use href="#ico-dust"/></svg> Магич. пыль</span>
+        <span class="res-chip"><svg><use href="#ico-zar"/></svg> ZAR</span>
+        <span class="res-chip"><svg><use href="#ico-gram"/></svg> GRAM</span>
     </div>
 
     <div class="grid-2">
@@ -440,13 +532,13 @@
         <div class="card">
             <h3>1. Способности клана: Оптимальный выбор <span class="badge badge-green">Не качайте всё подряд!</span></h3>
             <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 10px;">
-                Качать все 6 способностей невыгодно — вы сожжете Изумруды и Золото впустую. Качайте <strong>только 3 ключевые (Ядро)</strong> + дешевую Разведку I:
+                Качать все 6 способностей невыгодно. Качайте <strong>только 3 ключевые (Ядро)</strong> + дешевую Разведку I:
             </p>
             <table class="data-table">
                 <thead>
                     <tr>
                         <th>Способность</th>
-                        <th>Рекомендация</th>
+                        <th>План</th>
                         <th>Цена нужных уровней</th>
                         <th>Почему именно так (ROI)</th>
                     </tr>
@@ -455,44 +547,66 @@
                     <tr class="priority-row">
                         <td><strong>1. Доп. приказы</strong></td>
                         <td><span class="badge badge-green">Берем Ур. II</span><br><small>День 1 (ПН)</small></td>
-                        <td>Ур. I: 60M Зол., 400 Алм.<br>Ур. II: 80M Зол., 600 Алм.</td>
+                        <td>
+                            <div style="margin-bottom:4px;"><small>Ур.I:</small> <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>60M</span> <span class="res-chip" title="Алмазы"><svg><use href="#ico-diamond"/></svg>400</span></div>
+                            <div><small>Ур.II:</small> <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>80M</span> <span class="res-chip" title="Алмазы"><svg><use href="#ico-diamond"/></svg>600</span></div>
+                        </td>
                         <td><strong>Обязательно:</strong> дает +3 хода в день. Без них не дойти до шахты (4–5 клеток) в 1-й фазе сезона.</td>
                     </tr>
                     <tr class="priority-row">
                         <td><strong>2. Телепорт</strong></td>
                         <td><span class="badge badge-green">Берем Ур. II</span><br><small>День 1 (ПН)</small></td>
-                        <td>Ур. I: 35M Зол., 35 Пыли<br>Ур. II: 60M Зол., 65 Пыли</td>
+                        <td>
+                            <div style="margin-bottom:4px;"><small>Ур.I:</small> <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>35M</span> <span class="res-chip" title="Магич. пыль"><svg><use href="#ico-dust"/></svg>35</span></div>
+                            <div><small>Ур.II:</small> <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>60M</span> <span class="res-chip" title="Магич. пыль"><svg><use href="#ico-dust"/></svg>65</span></div>
+                        </td>
                         <td><strong>Обязательно:</strong> прыжок на 4 клетки экономит 3 хода и позволяет бесплатно крутить резервы через базу.</td>
                     </tr>
                     <tr class="priority-row">
                         <td><strong>3. Укрепление</strong></td>
                         <td><span class="badge badge-green">Берем Ур. I–II</span><br><small>День 2 (ВТ)</small></td>
-                        <td>Ур. I: 40M Зол., 2400 Кам.<br>Ур. II: 70M Зол., 4300 Кам.</td>
-                        <td><strong>Топ за свои деньги:</strong> тратит только Камень и дает −20% урона всем 5 отрядам на шахте.</td>
+                        <td>
+                            <div style="margin-bottom:4px;"><small>Ур.I:</small> <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>40M</span> <span class="res-chip" title="Камень"><svg><use href="#ico-stone"/></svg>2.4K</span></div>
+                            <div><small>Ур.II:</small> <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>70M</span> <span class="res-chip" title="Камень"><svg><use href="#ico-stone"/></svg>4.3K</span></div>
+                        </td>
+                        <td><strong>Топ за свои деньги:</strong> тратит обычный Камень и дает −20% урона всем 5 отрядам на шахте.</td>
                     </tr>
                     <tr>
                         <td><strong>4. Разведка</strong></td>
                         <td><span class="badge badge-gold">Хватит Ур. I</span><br><small>День 2 (ВТ)</small></td>
-                        <td>Ур. I: 55M Зол., 600 Алм.<br><small>(Ур. II–IV не нужны)</small></td>
-                        <td>Достаточно Ур. I (радиус 1 от любого отряда клана), чтобы раз в день проверить главную цель перед 5-й фазой.</td>
+                        <td>
+                            <small>Ур.I:</small> <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>55M</span> <span class="res-chip" title="Алмазы"><svg><use href="#ico-diamond"/></svg>600</span>
+                        </td>
+                        <td>Достаточно Ур. I (радиус 1 от любого отряда клана), чтобы раз в день проверить цель перед 5-й фазой.</td>
                     </tr>
                     <tr class="skip-row">
                         <td><strong>5. Ускор. добычи</strong></td>
-                        <td><span class="badge badge-gray">Пропуск / Ур. I</span><br><small>Только под 150% шахту</small></td>
-                        <td>Ур. I: 60M Зол., 50K Изумр.<br><small>(Окупается долго!)</small></td>
-                        <td>Дает лишь +25% к <em>одной доле</em> (1/6 дня), а при потере шахты сгорает. Брать Ур. I только если держите Богатую шахту Изумрудов/ZAR.</td>
+                        <td><span class="badge badge-gray">Пропуск / Ур. I</span><br><small>Под 150% шахту</small></td>
+                        <td>
+                            <small>Ур.I:</small> <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>60M</span> <span class="res-chip" title="Изумруды"><svg><use href="#ico-emerald"/></svg>50K</span>
+                        </td>
+                        <td>Дает лишь +25% к <em>одной доле</em> (1/6 дня), а при потере шахты сгорает. Брать Ур. I только под Богатую шахту.</td>
                     </tr>
                     <tr class="skip-row">
                         <td><strong>6. Лекарь</strong></td>
                         <td><span class="badge badge-red">НЕ КАЧАТЬ!</span><br><small>Ловушка казны</small></td>
-                        <td>Сэкономит клану:<br><strong>525M Зол., 380K Из., 40K ZAR</strong></td>
-                        <td><strong>Бесполезная трата:</strong> лечит всего на 15% (потолок 85%). Гораздо выгоднее бесплатно лечиться на базе (+25%), меняя слот на резерв!</td>
+                        <td>
+                            <small>Экономия клану:</small><br>
+                            <span class="res-chip" title="Золото"><svg><use href="#ico-gold"/></svg>525M</span>
+                            <span class="res-chip" title="Изумруды"><svg><use href="#ico-emerald"/></svg>380K</span>
+                            <span class="res-chip" title="ZAR"><svg><use href="#ico-zar"/></svg>40K</span>
+                        </td>
+                        <td><strong>Бесполезная трата:</strong> лечит всего на 15% (потолок 85%). Выгоднее бесплатно лечиться на базе (+25%), меняя слот на резерв!</td>
                     </tr>
                 </tbody>
             </table>
             <div class="callout green">
-                ✅ <strong>Реальный стартовый бюджет клана (на 2 дня для Ядра):</strong><br>
-                Всего <strong>400M Золота</strong> • <strong>1 600 Алмазов</strong> • <strong>100 Магич. пыли</strong> • <strong>6 700 Камня</strong> • <strong>0 Изумрудов</strong>! (Вдвое дешевле полной прокачки).
+                ✅ <strong>Итоговый стартовый банк клана на 2 дня (только нужное Ядро):</strong><br>
+                <span class="res-chip"><svg><use href="#ico-gold"/></svg> 400M Золота</span>
+                <span class="res-chip"><svg><use href="#ico-diamond"/></svg> 1 600 Алмазов</span>
+                <span class="res-chip"><svg><use href="#ico-dust"/></svg> 100 Магич. пыли</span>
+                <span class="res-chip"><svg><use href="#ico-stone"/></svg> 6 700 Камня</span>
+                <span class="res-chip"><svg><use href="#ico-emerald"/></svg> 0 Изумрудов</span>
             </div>
         </div>
 
@@ -500,7 +614,7 @@
         <div class="card">
             <h3>2. Расходники на битву: Правило окупаемости <span class="badge badge-gold">Не сливайте лимиты!</span></h3>
             <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 10px;">
-                Лимиты в Полевом магазине — это <strong>потолок игры, а НЕ план трат</strong>. В 90% фаз ваш расход должен быть <strong>0 GRAM / 0 ZAR</strong>!
+                Лимиты в Полевом магазине — это <strong>потолок игры, а НЕ план трат</strong>. В 90% фаз ваш расход должен быть <strong>0 ресурсов</strong>!
             </p>
             <table class="data-table" style="margin-bottom: 12px;">
                 <thead>
@@ -512,19 +626,29 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Экстренное лечение</strong><br><strong style="color:#ff6b6b">2 GRAM / 5 000 ZAR</strong><br><small>(+25% HP в поле, лимит 3/день на клан)</small></td>
+                        <td>
+                            <strong>Экстренное лечение</strong><br>
+                            <span class="res-chip"><svg><use href="#ico-gram"/></svg>2 GRAM</span> или
+                            <span class="res-chip"><svg><use href="#ico-zar"/></svg>5 000 ZAR</span><br>
+                            <small>(+25% HP в поле, лимит 3/день)</small>
+                        </td>
                         <td>• Есть живая резервная команда на базе.<br>• Бой идет за Бедную/Среднюю шахту в Фазах 1–4.</td>
                         <td><strong>Фаза 5 на Богатой шахте:</strong> ваш топ-отряд стоит на 1-м месте в очереди под Укреплением, и эти +25% HP удержат вам Ночную + Утреннюю долю (выгода > 5 000 ZAR).</td>
                     </tr>
                     <tr>
-                        <td><strong>Сокращение восст.</strong><br><strong style="color:#ff6b6b">3 GRAM / 7 000 ZAR</strong><br><small>(−1 фаза отката при гибели всех 7 орков, лимит 10/день)</small></td>
+                        <td>
+                            <strong>Сокращение восст.</strong><br>
+                            <span class="res-chip"><svg><use href="#ico-gram"/></svg>3 GRAM</span> или
+                            <span class="res-chip"><svg><use href="#ico-zar"/></svg>7 000 ZAR</span><br>
+                            <small>(−1 фаза отката при гибели всех 7 орков)</small>
+                        </td>
                         <td>• <strong>Никогда не покупайте</strong>, если у игрока есть Команда №2 или №3 в резерве! Просто выведите резерв бесплатно, пока первая спит 3 фазы.</td>
                         <td>Только в финальной битве за ключевую 150% шахту, когда у топ-игрока с сетом +2400 выбиты все резервы, и нужно сократить откат на 1–2 фазы.</td>
                     </tr>
                 </tbody>
             </table>
             <div class="callout">
-                💡 <strong>Как считать выгоду перед покупкой буста за 5 000–7 000 ZAR:</strong><br>
+                💡 <strong>Как считать выгоду перед покупкой буста за <span class="res-chip"><svg><use href="#ico-zar"/></svg>5 000–7 000 ZAR</span>:</strong><br>
                 Посмотрите на карточку шахты (число «За эту фазу»). Если вы берете шахту в <strong>Фазе 5</strong>, вы получаете <strong>2 доли</strong> (Ночную + Фазу 1 утра). Покупайте усилитель ТОЛЬКО если ценность этих 2 долей выше цены усилителя!
             </div>
             <div class="callout danger" style="margin-top: 10px;">
