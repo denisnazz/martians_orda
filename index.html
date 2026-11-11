@@ -327,10 +327,15 @@
         strong { color: var(--accent-gold); }
 
         @media (max-width: 900px) {
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            .phase-bar { flex-direction: column; height: auto; }
-            .phase-seg { width: 100% !important; border-left: none !important; border-bottom: 1px solid var(--border-gold); padding: 15px; }
-        }
+    body { padding: 10px; }
+    .grid-2, .grid-3 { grid-template-columns: 100%; }
+    .card { padding: 14px 10px; overflow-x: auto; width: 100%; }
+    .phase-bar { flex-direction: column; height: auto; }
+    .phase-seg { width: 100% !important; border-left: none !important; border-bottom: 1px solid var(--border-gold); padding: 15px; }
+    .data-table { width: 100% !important; table-layout: auto; font-size: 0.78rem; }
+    .data-table th, .data-table td { padding: 6px 5px; word-break: break-word; }
+    .badge, .res-chip { white-space: normal; font-size: 0.72rem; }
+}
     </style>
 </head>
 <body>
